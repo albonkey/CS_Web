@@ -17,17 +17,44 @@
                 <div id="title">SOFTWARE ENGINEER</div>
             </div>
             <div id="menu">
-                <div id="menu_btn1" class="menuBtn">About</div>
+                <div id="menu_btn1" class="menuBtn">Contact Me</div>
                 <div id="menu_btn2" class="menuBtn">Portfolio</div>
-                <div id="menu_btn3" class="menuBtn">Contact</div>
+                <div id="menu_btn3" class="menuBtn">About</div>
             </div>
         </header>
         <main>
             <div id="boxes_container">
                 <div id="box_left" class="box"><div class="txt_rotate">ABOUT</div></div>
-                <div id="box_middle" class="box"></div>
+                <div id="box_middle" onmouseenter="typeWriter()" onmouseleave="typeEraser()" class="box"><div class="txt_rotate">C<label id="box_c"></label>S<label id="box_s"></label></div></div>
                 <div id="box_right" class="box"><div class="txt_rotate">PORTFOLIO</div></div>
             </div>
         </main>
+        <script>
+            var box_middle = document.getElementById("box_middle");
+            var box_c = document.getElementById("box_c");
+            var box_s = document.getElementById("box_s");
+
+            var text_c = "arl";
+            var text_s = "olli";
+
+            var i = 0;
+            var speed = 75;
+            function typeWriter(){
+                j = text_s.length;
+                if (i <= text_c.length) {
+                    box_c.innerHTML = text_c.substr(0,i);
+                }
+                if (i <= text_s.length) {
+                    box_s.innerHTML = text_s.substr(0,i);
+                    setTimeout(typeWriter, speed);
+                    i++;
+                }
+            }
+            function typeEraser(){
+                box_c.innerHTML = "";
+                box_s.innerHTML = "";
+                i = 0;
+            }
+        </script>
     </body>
 </html>

@@ -36,8 +36,9 @@ header {
 }
 #menu{
     float:right;
-    width: 40vw;
+    width: 35vw;
     height: 100%;
+    margin-right: 5vw;
 }
 .menuBtn{
     height: 3vh;
@@ -45,7 +46,22 @@ header {
     margin-top: 6vh;
     float:right;
     position: relative;
-    padding:0 1% 0 1%;
+    padding:8px 1% 2px 1%;
+    text-align: center;
+    transition: .2s;
+}
+.menuBtn:hover{
+    font-size: 1.15vw;
+    transition: .2s;
+}
+#menu_btn1{
+    border: 1px solid white;
+    color:orange;
+    transition: .5s;
+}
+#menu_btn1:hover{
+    transition: .5s;
+    background-color: rgba(255, 153, 0, 0.2);
 }
 main{
     height: 90vh;
@@ -69,19 +85,21 @@ main{
 .box:hover{
     transform: scale(1.2, 1.2) rotate(45deg); 
     transition: .5s;
+    color:orange;
 }
 #box_middle{
     height: 15vw;
     width: 15vw;
     margin-top: 25vh;
+    z-index: 5;
 }
 .txt_rotate{
     transform: rotate(-45deg);
     font-size: 1.2vw;
+    text-align: center;
+    margin: 4.1vw 0 0 0;
 }
-#box_left .txt_rotate{
-    margin: 5vh 0 0 4vh;
-}
-#box_right .txt_rotate{
-    margin: 6vh 0 0 3vh;
+#box_middle .txt_rotate{
+        margin:6vw 0 0 0;
+        font-size: 3vw;
 }

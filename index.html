@@ -17,44 +17,102 @@
                 <div id="title">SOFTWARE ENGINEER</div>
             </div>
             <div id="menu">
-                <div id="menu_btn1" class="menuBtn">Contact Me</div>
-                <div id="menu_btn2" class="menuBtn">Portfolio</div>
-                <div id="menu_btn3" class="menuBtn">About</div>
+                <div id="menu-btn1" class="menuBtn">Contact Me</div>
+                <div id="menu-btn2" class="menuBtn">Portfolio</div>
+                <div id="menu-btn3" class="menuBtn">About</div>
             </div>
         </header>
         <main>
-            <div id="boxes_container">
-                <div id="box_left" class="box"><div class="txt_rotate">ABOUT</div></div>
-                <div id="box_middle" onmouseenter="typeWriter()" onmouseleave="typeEraser()" class="box"><div class="txt_rotate">C<label id="box_c"></label>S<label id="box_s"></label></div></div>
-                <div id="box_right" class="box"><div class="txt_rotate">PORTFOLIO</div></div>
+            <div id="boxes-container">
+                <div id="box-left" class="box"><div class="txt_rotate">ABOUT</div></div>
+                <div id="box-middle">
+                    <div class="txt_rotate">CS</div>
+                </div>
+                <div id="box-right" class="box"><div class="txt_rotate">PORTFOLIO</div></div>
             </div>
         </main>
+        <div id="about"></div>
+        <div id="portfolio"></div>
         <script>
-            var box_middle = document.getElementById("box_middle");
-            var box_c = document.getElementById("box_c");
-            var box_s = document.getElementById("box_s");
+            var box_middle = document.getElementById("box-middle");
+            var boxMem = 0;
+            var skillCount = 0;
 
-            var text_c = "arl";
-            var text_s = "olli";
+            var skills = ["Javascript","HTML & CSS","Python","Java","SQL","Photoshop"];
+            window.onscroll = function() {scrollFunction()};
 
-            var i = 0;
-            var speed = 75;
-            function typeWriter(){
-                j = text_s.length;
-                if (i <= text_c.length) {
-                    box_c.innerHTML = text_c.substr(0,i);
+            function scrollFunction() {
+                var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                var scrolled = (winScroll / height) * 100;
+
+                console.log(scrolled*2);
+                if(scrolled > 1){
+                    box_middle.innerHTML = "";
                 }
-                if (i <= text_s.length) {
-                    box_s.innerHTML = text_s.substr(0,i);
-                    setTimeout(typeWriter, speed);
-                    i++;
+                else{
+                    box_middle.innerHTML = '<div class="txt_rotate">CS</div>';
                 }
+                //Rotating the square and expanding it after 45.
+                if(scrolled*2 <= 45){
+                    box_middle.style.transform = "rotate(" + (scrolled*2 + 45) + "deg)";
+                }
+                else if(scrolled*2 < 80){
+                    box_middle.style.transform = "scale(" + (Math.pow((scrolled*2/45),2)) + "," + (Math.pow((scrolled*2/45),2))+")";
+                    boxMem = (Math.pow((scrolled*2/45),2))
+                }
+                else if(scrolled*2 < 120){
+                    box_middle.style.border = "1px solid white";
+                    box_middle.innerHTML = `
+                        <div id="about-container">
+                            <div id="about-header"> Carl Solli </div>
+                            <div id="about-title">California State University of Los Angeles</div>
+                            <div class="about-info">
+                                I began my degree as a Computer Science Major, Fall of 2018.
+                                I'm not completely sure where I want to go with my major yet, 
+                                but I'm interested in Web Development, Robotics and Artificial Intelligence.
+                            </div>
+                            <div class="about-info">
+                                I'm a student athlethe playing soccer. Soccer is something that has been with me my 
+                                entire life and has helped me evolve as a person. It has also opened alot of doors, giving
+                                me opportunities I would not get without it.    
+                            </div>
+                            <div class="about-info">
+                                In my freetime I like to work on my other hobbies which include drawing, playing the guitar, 
+                                card magic and photography/ video editing.
+                            </div>
+                        </div>
+                    `;
+                    if((scrolled*2) < 90){
+                        document.getElementById("about-container").style.opacity = `${(((scrolled*2) - 80)/10)}`;
+                    }
+                    if ((scrolled*2) > 105){
+                        box_middle.style.opacity = `${1 - (((scrolled*2) - 110)/10)}`;
+                    }
+                 }
+                 else if(scrolled*2 < 165){
+                    box_middle.style.opacity = "1";
+                    box_middle.style.border = 0;
+                    box_middle.innerHTML = "";
+                    
+                    skillCount = Math.floor((scrolled*2-120)/5);
+                     
+                    if(scrolled*2<155){
+                        for(var i = 0; i < skillCount; i++){
+                        box_middle.innerHTML += `
+                        <div class='skillbox'>${skills[i]}</div>
+                     `;
+                     }
+                    }
+                 } 
+                 else if(scrolled*2 < 130) {
+
+                 }
+                 else{
+                 }
+                
             }
-            function typeEraser(){
-                box_c.innerHTML = "";
-                box_s.innerHTML = "";
-                i = 0;
-            }
+
         </script>
     </body>
 </html>

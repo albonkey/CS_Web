@@ -2,7 +2,6 @@ body {
     margin: 0px;
     padding: 0px;
     font-family: arial;
-    background-clip: 
 }
 #myVideo {
   position: fixed;
@@ -10,6 +9,7 @@ body {
   bottom: 0;
   min-width: 100%; 
   min-height: 100%;
+  z-index: -5;
 }
 header {
     width: 100%;
@@ -54,19 +54,21 @@ header {
     font-size: 1.15vw;
     transition: .2s;
 }
-#menu_btn1{
+#menu-btn1{
     border: 1px solid white;
     color:orange;
     transition: .5s;
 }
-#menu_btn1:hover{
+#menu-btn1:hover{
     transition: .5s;
     background-color: rgba(255, 153, 0, 0.2);
 }
 main{
     height: 90vh;
+    margin:auto;
+    position: relative;
 }
-#boxes_container{
+#boxes-container{
     width: 80vw;
     height: 60vh;
     margin:auto;
@@ -74,23 +76,33 @@ main{
 .box{
     height: 10vw;
     width: 10vw;
-    float:left;
     transform: rotate(45deg);
+    margin-top: 29vh;
     border: 1px solid white;
     color: white;
     background-color: transparent;
-    margin: 30vh 7vw 0 7vw;
-    transition: .5s;
+}
+#box-left{
+    float:left;
+    margin-left: 8vw;
+}
+#box-right{
+    float:right;
+    margin-right: 8vw;
 }
 .box:hover{
     transform: scale(1.2, 1.2) rotate(45deg); 
     transition: .5s;
     color:orange;
 }
-#box_middle{
+#box-middle{
     height: 15vw;
     width: 15vw;
-    margin-top: 25vh;
+    transform: rotate(45deg);
+    position:fixed;
+    border: 1px solid white;
+    color: white;
+    margin: 24vh 0 0 32vw;
     z-index: 5;
 }
 .txt_rotate{
@@ -99,7 +111,43 @@ main{
     text-align: center;
     margin: 4.1vw 0 0 0;
 }
-#box_middle .txt_rotate{
+#box-middle .txt_rotate{
         margin:6vw 0 0 0;
         font-size: 3vw;
+}
+#about{
+    height: 100vh;
+}
+#about-header{
+    margin-top: 1.5vh;
+    text-align: center;
+    font-size: 1vw;
+}
+#about-title{
+    margin-top: 1vh;
+    text-align: center;
+    font-size: .5vw;
+    color: orange;
+}
+.about-info{
+    font-size: .5vw;
+    margin: 1vh auto 0 auto;
+    width: 80%;
+}
+
+#portfolio{
+    height: 100vh;
+}
+
+.skillbox{
+    float:right;
+    width: 100%;
+    height: 2.8vh;
+    border:1px solid white;
+    margin: 1vh 0 0 0;
+    font-size: 1vw;
+    padding: .7vh 0 0 1vw;
+}
+.skillbox:hover{
+    color: orange;
 }

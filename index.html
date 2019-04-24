@@ -18,33 +18,35 @@
             </div>
             <div id="menu">
                 <div id="menu-btn1" class="menuBtn">Contact Me</div>
-                <div id="menu-btn2" class="menuBtn">Portfolio</div>
-                <div id="menu-btn3" class="menuBtn">About</div>
+                <div id="menu-btn2" class="menuBtn" onclick="smoothScroll(document.getElementById('portfolio'))">Portfolio</div>
+                <div id="menu-btn3" class="menuBtn" onclick="smoothScroll(document.getElementById('about'))">About</div>
             </div>
         </header>
         <main>
             <div id="boxes-container">
-                <div id="box-left" class="box"><div class="txt_rotate">ABOUT</div></div>
+                <div id="box-left" class="box" onclick="smoothScroll(document.getElementById('about'))"><div class="txt_rotate">ABOUT</div></div>
                 <div id="box-middle">
                     <div class="txt_rotate">CS</div>
                 </div>
-                <div id="box-right" class="box"><div class="txt_rotate">PORTFOLIO</div></div>
+                <div id="box-right" class="box" onclick="smoothScroll(document.getElementById('portfolio'))"><div class="txt_rotate">PORTFOLIO</div></div>
             </div>
         </main>
         <div id="about"></div>
         <div id="portfolio"></div>
+        <div id="contact"></div>
         <script>
             var box_middle = document.getElementById("box-middle");
             var boxMem = 0;
             var skillCount = 0;
+            var listChooser = 0;
 
-            var skills = ["Javascript","HTML & CSS","Python","Java","SQL","Photoshop"];
+            var skills = [["Javascript","HTML & CSS","Python","Java","SQL","Skills"],["TeamFine","Iphone App","Project X","You dont even wanna know","Facebook","Projects"]];
             window.onscroll = function() {scrollFunction()};
 
             function scrollFunction() {
                 var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
                 var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-                var scrolled = (winScroll / height) * 100;
+                var scrolled = (winScroll / height) * 300;
 
                 console.log(scrolled*2);
                 if(scrolled > 1){
@@ -54,14 +56,14 @@
                     box_middle.innerHTML = '<div class="txt_rotate">CS</div>';
                 }
                 //Rotating the square and expanding it after 45.
-                if(scrolled*2 <= 45){
-                    box_middle.style.transform = "rotate(" + (scrolled*2 + 45) + "deg)";
+                if(scrolled <= 45){
+                    box_middle.style.transform = "rotate(" + (scrolled + 45) + "deg)";
                 }
-                else if(scrolled*2 < 80){
-                    box_middle.style.transform = "scale(" + (Math.pow((scrolled*2/45),2)) + "," + (Math.pow((scrolled*2/45),2))+")";
-                    boxMem = (Math.pow((scrolled*2/45),2))
+                else if(scrolled < 80){
+                    box_middle.style.transform = "scale(" + (Math.pow((scrolled/45),2)) + "," + (Math.pow((scrolled/45),2))+")";
+                    boxMem = (Math.pow((scrolled*3/45),2))
                 }
-                else if(scrolled*2 < 120){
+                else if(scrolled < 170){
                     box_middle.style.border = "1px solid white";
                     box_middle.innerHTML = `
                         <div id="about-container">
@@ -83,36 +85,77 @@
                             </div>
                         </div>
                     `;
-                    if((scrolled*2) < 90){
-                        document.getElementById("about-container").style.opacity = `${(((scrolled*2) - 80)/10)}`;
+                    if((scrolled) < 90){
+                        document.getElementById("about-container").style.opacity = `${(((scrolled) - 80)/10)}`;
                     }
-                    if ((scrolled*2) > 105){
-                        box_middle.style.opacity = `${1 - (((scrolled*2) - 110)/10)}`;
+                    if (scrolled > 160){
+                        box_middle.style.opacity = `${1 - ((scrolled - 160)/10)}`;
                     }
                  }
-                 else if(scrolled*2 < 165){
+                 else if(scrolled < 240){
                     box_middle.style.opacity = "1";
                     box_middle.style.border = 0;
                     box_middle.innerHTML = "";
                     
-                    skillCount = Math.floor((scrolled*2-120)/5);
+                    if(scrolled<200){
+                        skillCount = Math.floor((scrolled-166)/5);
+                    }
                      
-                    if(scrolled*2<155){
-                        for(var i = 0; i < skillCount; i++){
-                        box_middle.innerHTML += `
-                        <div class='skillbox'>${skills[i]}</div>
-                     `;
-                     }
+                    for(var i = 0; i < skillCount; i++){
+                        if(i === 5){
+                                box_middle.innerHTML += `
+                                <div class='skillbox'><div id="skills" onclick="listChooser = 0, scrollFunction()" >Skills</div><div id="projects" onclick="listChooser = 1, scrollFunction()">Projects</div></div>
+                                `;
+                        }
+                        else{
+                            box_middle.innerHTML += `
+                            <div class='skillbox'><div class="skill-text">${skills[listChooser][i]}</div></div>
+                            `;
+                        }
+
+                    }
+                    if(listChooser === 0){
+                        document.getElementById('projects').style.color= 'white';
+                        document.getElementById('skills').style.color= 'orange';
+                    }
+                    else{
+                        document.getElementById('projects').style.color= 'orange';
+                        document.getElementById('skills').style.color= 'white';
+                    }
+                    if(scrolled>230){
+                        box_middle.style.opacity = `${1 - ((scrolled - 230)/10)}`;
                     }
                  } 
-                 else if(scrolled*2 < 130) {
-
+                 else if(scrolled < 180) {
+                    
                  }
                  else{
                  }
                 
             }
 
+            window.smoothScroll = function(target) {
+            var scrollContainer = target;
+            do { //find scroll container
+                scrollContainer = scrollContainer.parentNode;
+                if (!scrollContainer) return;
+                scrollContainer.scrollTop += 1;
+            } while (scrollContainer.scrollTop == 0);
+
+            var targetY = 0;
+            do { //find the top of target relatively to the container
+                if (target == scrollContainer) break;
+                targetY += target.offsetTop;
+            } while (target = target.offsetParent);
+
+            scroll = function(c, a, b, i) {
+                i++; if (i > 30) return;
+                c.scrollTop = a + (b - a) / 30 * i;
+                setTimeout(function(){ scroll(c, a, b, i); }, 20);
+            }
+            // start scrolling
+            scroll(scrollContainer, scrollContainer.scrollTop, targetY, 0);
+        }
         </script>
     </body>
 </html>

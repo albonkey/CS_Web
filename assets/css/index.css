@@ -3,6 +3,10 @@ body {
     padding: 0px;
     font-family: arial;
 }
+a {
+    text-decoration: inherit;
+    color: inherit;
+}
 #myVideo {
   position: fixed;
   right: 0;
@@ -58,10 +62,10 @@ header {
 #menu-btn1{
     border: 1px solid white;
     color:orange;
-    transition: .5s;
+    transition: .2s;
 }
 #menu-btn1:hover{
-    transition: .5s;
+    transition: .2s;
     background-color: rgba(255, 153, 0, 0.2);
 }
 main{
@@ -183,5 +187,58 @@ main{
 }
 #contact{
     height: 100vh;
-    border: 1px solid green;
+    z-index: 6;
+    overflow:hidden;
+}
+#contact-form-container{
+    width: 50%;
+    margin:13vh auto 0 auto;
+    color:white;
+    display: block;
+    opacity: 0;
+
+}
+#contact-title{
+    font-size: 3vw;
+    text-align: center;
+    margin-bottom: 5vh;
+}
+#contact-form table{
+    width: 100%;
+}
+#contact-form td{
+    height: 5vh;
+}
+#contact-form input{
+    width: 95%;
+    background-color: transparent;
+    border: 1px solid white;
+    background-color: white;
+    height: 100%;
+    font-size: 1vw;
+    padding-left: 1vw;
+}
+#msg-td input{
+    height:15vh;
+}
+.form-name{
+    max-width: 90%;
+}
+.undertitle{
+    font-size: .7vw;
+    vertical-align: text-top;
+}
+#submitbtn{
+    margin-top: 1vh;
+    background-color: transparent;
+    color: white;
+    border: 2px solid;
+    height: 5vh;
+    width: 10vw;
+    font-size: 1.5vw;
+    transition:.2s;
+}
+#submitbtn:hover{
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: .2s;
 }

@@ -29,7 +29,7 @@ header {
     width:40%;
     font-size: 3vw;
     float:left;
-    margin: 2vw 0 0 2vw;
+    margin: 4vh 0 0 2vw;
 }
 #title{
     font-size: 1.2vw;
@@ -125,7 +125,7 @@ main{
     height: 100vh;
 }
 #about-header{
-    margin-top: 1.5vh;
+    margin-top: 2vh;
     text-align: center;
     font-size: 1vw;
 }
@@ -141,6 +141,24 @@ main{
     width: 80%;
 }
 
+#top-btn{
+    right: 0;
+    height: 4.5vh;
+    width: 10vw;
+    background-color: orange;
+    position:fixed;
+    margin-top: 5vh;
+    color:white;
+    text-align: center;
+    font-size: 1.2vw;
+    padding-top: 1.5vh;
+    transition: .3s;
+    opacity: 0;
+}
+#top-btn:hover{
+    width:12vw;
+    transition: .3s;
+}
 #portfolio{
     height: 100vh;
 }
@@ -218,8 +236,9 @@ main{
     font-size: 1vw;
     padding-left: 1vw;
 }
-#msg-td input{
+#msg-td textarea{
     height:15vh;
+    width: 97%;
 }
 .form-name{
     max-width: 90%;
